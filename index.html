@@ -1,0 +1,27 @@
+<!DOCTYPE html><html lang="es"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Hola Mundo Futurístico</title>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap");
+*{margin:0;padding:0;box-sizing:border-box}
+body{height:100vh;background:radial-gradient(ellipse at center,#0a0a1f 0%,#000 100%);overflow:hidden;display:flex;justify-content:center;align-items:center;font-family:'Orbitron',sans-serif;perspective:1000px}
+.container{position:relative;text-align:center;transform-style:preserve-3d;animation:float 6s ease-in-out infinite}
+.neon-text{font-size:5rem;font-weight:900;color:#0ff;text-shadow:0 0 10px #0ff,0 0 20px #0ff,0 0 40px #0ff,0 0 80px #0ff,0 0 160px #0ff;animation:pulse 2s ease-in-out infinite alternate,scan 3s linear infinite;letter-spacing:.1em;position:relative;z-index:2}
+.glitch{position:absolute;top:0;left:0;width:100%;color:#f0f;text-shadow:-2px 0 #f0f,2px 0 #0f0;opacity:.8;animation:glitch .3s infinite;clip-path:polygon(0 0,100% 0,100% 40%,0 40%)}
+.glitch:nth-child(2){clip-path:polygon(0 60%,100% 60%,100% 100%,0 100%);animation-delay:.1s}
+.hologram{position:absolute;width:300px;height:300px;border:2px solid rgba(0,255,255,.3);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%) rotateX(75deg);animation:hologram-spin 8s linear infinite;box-shadow:0 0 20px #0ff,inset 0 0 20px rgba(0,255,255,.1)}
+.particle{position:absolute;width:4px;height:4px;background:#0ff;border-radius:50%;box-shadow:0 0 10px #0ff;animation:particle-float 4s linear infinite}
+@keyframes float{0%,100%{transform:translateY(0) rotateX(0)}50%{transform:translateY(-20px) rotateX(5deg)}}
+@keyframes pulse{from{ text-shadow:0 0 10px #0ff,0 0 20px #0ff,0 0 40px #0ff } to{ text-shadow:0 0 20px #0ff,0 0 40px #0ff,0 0 80px #0ff,0 0 160px #0ff }}
+@keyframes scan{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes glitch{0%,100%{transform:translate(0)}20%{transform:translate(-2px,2px)}40%{transform:translate(2px,-2px)}60%{transform:translate(-2px,-2px)}80%{transform:translate(2px,2px)}}
+@keyframes hologram-spin{from{transform:translate(-50%,-50%) rotateX(75deg) rotate(0)}to{transform:translate(-50%,-50%) rotateX(75deg) rotate(360deg)}}
+@keyframes particle-float{0%{transform:translate(0,0) scale(0);opacity:0}50%{opacity:1}100%{transform:translate(var(--x),var(--y)) scale(1);opacity:0}}
+.grid{position:absolute;width:200%;height:200%;top:-50%;left:-50%;background-image:linear-gradient(rgba(0,255,255,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,255,.1) 1px,transparent 1px);background-size:50px 50px;animation:grid-move 20s linear infinite;transform:rotateX(65deg)}
+@keyframes grid-move{from{transform:rotateX(65deg) translateY(0)}to{transform:rotateX(65deg) translateY(50px)}}
+</style></head><body>
+<div class="grid"></div><div class="container"><div class="hologram"></div>
+<h1 class="neon-text">HOLA MUNDO<div class="glitch">HOLA MUNDO</div><div class="glitch">HOLA MUNDO</div></h1></div>
+<script>
+function createParticle(){const p=document.createElement('div');p.classList.add('particle');const s=Math.random()*4+2;p.style.width=s+'px';p.style.height=s+'px';const d=Math.random()*3+2;p.style.animationDuration=d+'s';const x=(Math.random()-.5)*800;const y=(Math.random()-.5)*800;p.style.setProperty('--x',x+'px');p.style.setProperty('--y',y+'px');p.style.left='50%';p.style.top='50%';document.body.appendChild(p);setTimeout(()=>p.remove(),d*1000)}setInterval(createParticle,100);
+</script></body></html>
